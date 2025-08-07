@@ -176,13 +176,22 @@ nav a:hover {
 }
 @media screen and (max-width: 768px) {
   nav ul {
-    flex-direction: row;     /* ✅ keep it horizontal */
-    gap: 20px;               /* optional: reduce spacing on small screens */
+    justify-content: center;        /* center the nav */
+    gap: 20px;
+  }
+
+  nav li {
+    display: inline-block;
+  }
+
+  nav li:last-child {
+    display: none;                 /* ⛔ Hides the last item = SHOWS */
   }
 
   nav a {
     font-size: 0.9rem;
   }
+
 
   #rebecca {
     font-size: 3rem;          /* ⬅️ smaller font for mobile */
@@ -193,10 +202,10 @@ nav a:hover {
   }
 
    #ring-container {
-    width: 200px;
+    width: 160px;
     height: 200px;
-    bottom: 10%;
-    right: 5%;
+    bottom: 70%;
+    right: 2%;
   }
 }
 .stack-image {
