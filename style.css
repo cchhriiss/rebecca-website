@@ -1,11 +1,18 @@
 body {
   margin: 0;
   padding: 0;
-  min-height: 200vh; /* to allow scrolling */
   background: white;
   font-family: -apple-system, sans-serif;
 }
 
+/* FORCE HEIGHT FOR SCROLLING */
+body::after {
+  content: '';
+  display: block;
+  height: 200vh;
+}
+
+/* TEXT */
 #rebecca {
   position: fixed;
   bottom: 20%;
@@ -14,9 +21,29 @@ body {
   font-weight: 500;
   color: black;
   opacity: 0;
-  transform: scaleY(1.6); /* vertical stretch */
+  transform: scaleY(1.6);
   transition: opacity 0.8s ease-out;
   pointer-events: none;
   line-height: 0.9;
+  z-index: 2;
 }
 
+/* RING CONTAINER */
+#ring-container {
+  position: fixed;
+  bottom: 22%;
+  right: 5%;
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* CANVAS */
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
