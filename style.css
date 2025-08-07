@@ -1,49 +1,202 @@
 body {
   margin: 0;
-  padding: 0;
-  background: white;
   font-family: -apple-system, sans-serif;
+  background: #ffffff;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* FORCE HEIGHT FOR SCROLLING */
+body::before,
 body::after {
   content: '';
-  display: block;
+  position: fixed;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.2; /* very subtle */
+  filter: blur(100px);
+  transform: translate(-50%, -50%);
+}
+
+/* top left orange drop */
+body::before {
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, #ffe9c6, transparent 70%);
+}
+
+/* bottom right purple drop */
+body::after {
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle, #e6e2ff, transparent 70%);
+}
+
+body::nth-child(1)::after {
+  content: '';
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  top: 20%;
+  left: 80%;
+  background: radial-gradient(circle, #f0f4ff, transparent 70%);
+  opacity: 0.15;
+  filter: blur(120px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+/* ===== INTRO STAGE (animation + ring) ===== */
+
+#intro {
+  height: 220vh;  /* ⬅️ was 200vh → gives more scroll room before image comes */
+  position: relative;
+}
+
+.intro-wrapper {
+  position: relative;
   height: 200vh;
 }
 
-/* TEXT */
+
 #rebecca {
-  position: fixed;
-  bottom: 20%;
+  position: sticky;
+  top: 20%;
   left: 5%;
   font-size: 10rem;
   font-weight: 500;
   color: black;
-  opacity: 0;
   transform: scaleY(1.6);
-  transition: opacity 0.8s ease-out;
-  pointer-events: none;
   line-height: 0.9;
   z-index: 2;
+  transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+  opacity: 0;  /* start hidden */
 }
 
-/* RING CONTAINER */
 #ring-container {
   position: fixed;
-  bottom: 22%;
-  right: 5%;
+  bottom: 12%;
+  right: 6%;
   width: 300px;
-  height: 300px;
+  height: 500px;
   opacity: 0;
   transition: opacity 1s ease-out;
   pointer-events: none;
   z-index: 1;
 }
 
-/* CANVAS */
+
 canvas {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+/* ===== SCROLL PUSH SECTION ===== */
+
+.stack-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.stack-text {
+  position: sticky;
+  top: 0;
+  left: 5%;
+  font-size: 10rem;
+  font-weight: 500;
+  color: black;
+  transform: scaleY(1.6);
+  z-index: 2;
+  line-height: 0.9;
+  background: white;
+  width: 100%;
+  padding-left: 5%;
+}
+
+.stack-image img {
+  width: auto;
+  height: 100vh;
+  object-fit: cover;
+  margin-left: 2%;
+}
+
+.spacer {
+  height: 150vh;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+  100% { background-position: 50% 0%; }
+}
+
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 60px;
+  z-index: 100;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  flex: 1;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  #rebecca {
+    font-size: 3rem;          /* ⬅️ smaller font for mobile */
+    transform: scaleY(1.3);   /* ⬅️ slightly less stretch */
+    top: 10%;                 /* ⬅️ move it higher if needed */
+    padding-left: 5%;
+    line-height: 1;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav li {
+    text-align: center;
+  }
+
+  #ring-container {
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    right: 5%;
+  }
 }

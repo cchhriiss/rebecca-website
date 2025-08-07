@@ -7,17 +7,33 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-
-    <!-- TEXT -->
+ <nav>
+  <ul>
+    <li><a href="#">PORTFOLIO</a></li>
+    <li><a href="#">WORKSHOPS</a></li>
+    <li><a href="#">CUSTOMS</a></li>
+    <li><a href="#">SHOWS</a></li>
+  </ul>
+</nav>
+  <!-- TEXT AND RING STAGE -->
+<section id="intro">
+  <div class="intro-wrapper">
     <div id="rebecca">REBECCA<br>SCHULTZE</div>
-
-    <!-- 3D OBJECT HOLDER -->
     <div id="ring-container"></div>
+  </div>
+</section>
 
-    <!-- FILLER TO FORCE SCROLL -->
-    <div style="height: 3000px;"></div>
 
-    <!-- SCRIPT -->
-    <script type="module" src="./src/main.js"></script>
-  </body>
+  <!-- STACK SECTION THAT PUSHES TEXT -->
+  <section class="stack-section">
+    <div class="stack-image">
+      <img src="/hero.jpg" alt="Push image" />
+    </div>
+  </section>
+
+  <!-- EXTRA SCROLL SPACE -->
+  <section class="spacer"></section>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
 </html>

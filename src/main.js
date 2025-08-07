@@ -17,18 +17,19 @@ function init3D() {
     0.1,
     1000
   );
-  camera.position.z = 3;
+  camera.position.set(0, 0, 3);
+  camera.lookAt(0, 0, 0);
 
   renderer = new THREE.WebGLRenderer({ alpha: true });
   renderer.setClearColor(0x000000, 0);
   renderer.setSize(ringContainer.clientWidth, ringContainer.clientHeight);
   ringContainer.appendChild(renderer.domElement);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.8);
+  const ambient = new THREE.AmbientLight(0xffffff, 1.5);
   scene.add(ambient);
 
-  const directional = new THREE.DirectionalLight(0xffffff, 1.2);
-  directional.position.set(2, 3, 5);
+  const directional = new THREE.DirectionalLight(0xffffff, 2.5);
+  directional.position.set(3, 3, 5);
   scene.add(directional);
 
   const goldMaterial = new MeshStandardMaterial({
@@ -48,10 +49,9 @@ function init3D() {
     });
 
     ring = obj;
-    ring.scale.set(0.07, 0.07, 0.07);
-    ring.position.set(0, 0,0);
+    ring.scale.set(0.1, 0.1, 0.1);
+    ring.position.set(0, 0, 0);
     scene.add(ring);
-    camera.lookAt(ring.position);
     animate();
   }, undefined, (err) => {
     console.error('Failed to load OBJ:', err);
@@ -63,26 +63,38 @@ function animate() {
 
   if (ring) {
     const scrollY = window.scrollY;
-    ring.rotation.y = scrollY * 0.002;
-    ring.rotation.x = scrollY * 0.001;
+    ring.rotation.x = scrollY * 0.005;
   }
 
   renderer.render(scene, camera);
 }
+
+// === SCROLL TRIGGERED LOGIC ===
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+
+// Show or hide ring depending on scroll, regardless of hasFadedIn
+if (scrollY > 150) {
+  ringContainer.style.opacity = 1;
+
+  if (!hasFadedIn) {
+    init3D();
+    hasFadedIn = true;
+  }
+} else {
+  ringContainer.style.opacity = 0;
+}
+});
 
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
 
   if (scrollY > 50) {
     nameEl.style.opacity = 1;
-
-    if (!hasFadedIn && scrollY > 150) {
-      ringContainer.style.opacity = 1;
-      init3D();
-      hasFadedIn = true;
-    }
   } else {
     nameEl.style.opacity = 0;
-    ringContainer.style.opacity = 0;
   }
+
+  // keep the ring code here...
 });
+
