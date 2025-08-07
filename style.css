@@ -124,8 +124,8 @@ canvas {
 
 .stack-image img {
   width: auto;
+  object-fit: contain; 
   height: 100vh;
-  object-fit: cover;
   margin-left: 2%;
 }
 
