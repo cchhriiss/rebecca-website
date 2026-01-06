@@ -1,40 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rebecca Schultze</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-<nav>
-  <ul>
-    <li><a href="/portfolio/">PORTFOLIO</a></li>
-    <li><a href="/workshops/">WORKSHOP</a></li>
-    <li><a href="/customs/">CUSTOMS</a></li>
-    <li><a href="/shows/">SHOWS</a></li>
-  </ul>
-</nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST.1661 - Creative Agency Template</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- TEXT AND RING STAGE -->
-<section id="intro">
-  <div class="intro-wrapper">
-    <div id="rebecca">REBECCA<br>SCHULTZE</div>
-    <div id="ring-container"></div>
-  </div>
-</section>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.4;
+            overflow-x: hidden;
+            padding: 40px;
+        }
 
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
 
-  <!-- STACK SECTION THAT PUSHES TEXT -->
-  <section class="stack-section">
-    <div class="stack-image">
-      <img src="/hero.jpg" alt="Push image" />
+        /* --- TYPOGRAPHY --- */
+        h1.hero-title {
+            font-size: clamp(4rem, 10vw, 8rem); /* Responsive font size */
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+
+        h2.section-title {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 300; /* Thinner weight as seen in image */
+            text-transform: uppercase;
+            margin-top: 60px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            max-width: 200px;
+        }
+
+        .tiny-text {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .description-text {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* --- LAYOUT GRID --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Column Grid */
+            grid-gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER AREA --- */
+        header {
+            grid-column: 3 / span 2; /* Occupies the right half */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 80px;
+            text-align: left;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .header-services {
+            margin-top: 20px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            max-width: 300px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-text-block {
+            grid-column: 1 / span 4;
+        }
+
+        /* --- IMAGE GRID ROW 1 --- */
+        .img-block-1 {
+            grid-column: 1 / span 1;
+            position: relative;
+        }
+        
+        /* Simulating the blue scribble overlay */
+        .scribble-overlay {
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            font-family: cursive;
+            color: blue;
+            font-size: 4rem;
+            opacity: 0.8;
+            pointer-events: none;
+            transform: rotate(-10deg);
+        }
+
+        .img-block-2 {
+            grid-column: 2 / span 1;
+            background-color: #d82c20; /* The red color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .red-box-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.7rem;
+            color: black;
+            font-family: serif;
+            font-style: italic;
+        }
+
+        .text-block-right {
+            grid-column: 4 / span 1;
+            align-self: end;
+            padding-bottom: 20px;
+        }
+
+        /* --- DETAILS SECTION --- */
+        .details-title-block {
+            grid-column: 1 / span 4;
+            border-top: 1px solid transparent; /* Spacer */
+        }
+
+        /* --- LOWER GRID --- */
+        .text-block-bottom-left {
+            grid-column: 1 / span 1;
+            align-self: end;
+            padding-bottom: 40px;
+        }
+
+        .img-block-3 {
+            grid-column: 2 / span 1;
+            position: relative;
+        }
+        
+        /* The yellow "PORT" text overlay */
+        .yellow-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 10rem;
+            line-height: 0.8;
+            color: #e8d71e;
+            font-family: sans-serif;
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .img-block-4 {
+            grid-column: 3 / span 1;
+        }
+
+        .img-block-5 {
+            grid-column: 1 / span 1;
+            margin-top: 40px;
+        }
+        
+        .text-block-fashion {
+            grid-column: 2 / span 1;
+            align-self: start;
+            margin-top: 40px;
+        }
+
+        .img-block-6 {
+            grid-column: 4 / span 1;
+             margin-top: 40px;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* Stack everything */
+            }
+            
+            header, .hero-text-block, .img-block-1, .img-block-2, 
+            .text-block-right, .details-title-block, .text-block-bottom-left, 
+            .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6 {
+                grid-column: 1 / span 1;
+            }
+
+            header {
+                margin-bottom: 40px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        
+        <header>
+            <ul class="nav-list">
+                <li><span class="tiny-text">Work -</span></li>
+                <li>Creative Portfolio -</li>
+                <li>Connect -</li>
+                <li>Services -</li>
+            </ul>
+            <div class="header-services">
+                Creative Direction & Consultation // Social Media & Graphic Design // Print Design & Digital Design // Branding & Identity Design // Concept Development // Art Direction // Brand Strategy // Website Design
+            </div>
+        </header>
+
+        <div class="hero-text-block">
+            <h1 class="hero-title">ST.1661</h1>
+        </div>
+
+        <div class="img-block-1">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" alt="Portrait">
+            <div class="scribble-overlay">Mo-Po</div>
+        </div>
+
+        <div class="img-block-2">
+            <img src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?q=80&w=1000&auto=format&fit=crop" style="opacity: 0.6; mix-blend-mode: multiply;" alt="Eyes">
+            <div class="red-box-text">Lo stile è l'ordine delle idee</div>
+        </div>
+
+        <div></div>
+
+        <div class="text-block-right">
+            <p class="description-text">
+                GRAY LAB IS AN INDEPENDENT BRANDING & CREATIVE DESIGN STUDIO CURRENTLY BASED IN THE HIMALAYAS, INDIA. WORKING WITH BOLD BRANDS FROM FASHION, LIFESTYLE, MUSIC & TECHNOLOGY SPACE TO CREATE IDENTITIES, SOCIAL MEDIA DESIGN, WEBSITES & CREATIVE STRATEGIES.
+            </p>
+        </div>
+
+        <div class="details-title-block">
+            <h2 class="section-title">Details</h2>
+            <p class="subtitle">Music & Technology Space<br>To Create Identities</p>
+        </div>
+
+        <div class="text-block-bottom-left">
+            <span class="tiny-text">01/</span>
+            <p class="description-text">
+                THE BEST PROJECTS OF THE MONTH BASED ON THE ARTIST LICTRIK APMEQVARS ON THE SUBJECT OF MODERN RENAISSANCE ART.
+            </p>
+        </div>
+
+        <div class="img-block-3">
+             <div class="yellow-overlay">P<br>O<br>R<br>T</div>
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Man Portrait">
+             <span class="tiny-text" style="position:absolute; top:-20px; right:0;">Read More</span>
+        </div>
+
+        <div class="img-block-4">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Fashion Red">
+            <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Read More</span>
+        </div>
+        
+         <div></div>
+
+        <div class="img-block-5">
+            <img src="https://images.unsplash.com/photo-1525431836161-e40d68425074?q=80&w=1000&auto=format&fit=crop" alt="Eye Detail">
+        </div>
+
+        <div class="text-block-fashion">
+            <span class="tiny-text">02/</span>
+            <p class="description-text">
+                FASHION IS MORE THAN JUST CLOTHING; IT'S A FORM OF SELF-EXPRESSION, AN INDUSTRY, AND AN EVER-EVOLVING CULTURAL MOVEMENT. EVERY SEASON, NEW TRENDS EMERGE, INSPIRED BY EVERYTHING FROM STREET STYLE TO HIGH ART DESIGNERS AND BRANDS.
+            </p>
+        </div>
+
+        <div></div>
+
+        <div class="img-block-6">
+            <img src="https://images.unsplash.com/photo-1575439400780-388274d1a12e?q=80&w=1000&auto=format&fit=crop" alt="Blue Hat">
+             <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Read More</span>
+        </div>
+
     </div>
-  </section>
-
-  <!-- EXTRA SCROLL SPACE -->
-  <section class="spacer"></section>
-
-  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
