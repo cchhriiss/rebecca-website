@@ -257,9 +257,29 @@
             text-transform: uppercase; 
             line-height: 0.9;
         }
+        
+        /* New Project Number Style */
+        .project-number {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.5rem, 3vw, 3rem);
+            margin-right: 15px;
+            vertical-align: top;
+            letter-spacing: 0;
+        }
 
         .section-header-left { grid-column: 1 / span 3; margin-top: 0; text-align: left; }
-        .section-header-right { grid-column: 2 / span 3; margin-top: 80px; text-align: right; border: none; }
+        
+        /* Updated Section Right for overlap capability */
+        .section-header-right { 
+            grid-column: 2 / span 3; 
+            margin-top: 80px; 
+            text-align: right; 
+            border: none; 
+            position: relative; /* For absolute positioning of Boobyful 3 */
+        }
+        
         .section-header-center { grid-column: 1 / span 4; margin-top: 100px; text-align: center; border: none; }
 
         .subtitle { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; max-width: 200px; margin-top: 10px; display: inline-block; }
@@ -267,13 +287,20 @@
         .description-text { font-size: 0.75rem; text-transform: uppercase; line-height: 1.6; text-align: justify; font-weight: 500; }
 
         /* ELEMENTS */
+        
+        /* RED ACCENT CLASS FOR "I LIKE" */
+        .red-accent {
+            box-shadow: 15px 15px 0px #e32818; /* Hard red shadow on bottom right */
+            border: 1px solid #000;
+        }
+
         .img-block-1 { grid-column: 1 / span 1; position: relative; height: 300px; margin-top: 20px; }
         .scribble-overlay { position: absolute; top: 30%; left: 10%; font-family: cursive; color: #0044cc; font-size: 4rem; opacity: 0.8; pointer-events: none; transform: rotate(-10deg); z-index: 10; }
         
         .img-block-2 { grid-column: 2 / span 1; position: relative; height: 300px; background-color: #ddd; display:flex; align-items:center; justify-content:center; margin-top: 80px; }
         .red-box-text { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: black; font-family: serif; font-style: italic; z-index: 2; background: white; padding: 2px 5px; }
         
-        /* New helper classes for scattered images */
+        /* New helper classes */
         .img-block-extra-1 { grid-column: 3 / span 1; height: 300px; margin-top: -20px; }
         .img-block-extra-2 { grid-column: 1 / span 1; height: 300px; margin-top: 60px; }
         .img-block-extra-3 { grid-column: 2 / span 1; height: 300px; margin-top: 20px; }
@@ -285,8 +312,20 @@
         .img-block-3 { grid-column: 2 / span 2; position: relative; height: 500px; margin-top: 50px; }
         .yellow-overlay { position: absolute; top: 10px; left: 10px; font-size: 10rem; line-height: 0.8; color: #e8d71e; font-family: sans-serif; mix-blend-mode: multiply; pointer-events: none; z-index: 10; }
         
-        .img-block-4 { grid-column: 4 / span 1; height: 400px; margin-top: -100px; }
+        .img-block-4 { grid-column: 4 / span 1; height: 400px; margin-top: -50px; } /* Lowered from -100px */
         
+        /* Style for the overlay image on BOOBYFUL text */
+        .boobyful-overlay-img {
+            position: absolute;
+            top: -80px; /* Adjust vertical overlap */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px; /* Size of the accessory */
+            height: auto;
+            z-index: 20;
+            pointer-events: none; /* Click through */
+        }
+
         .img-block-5 { grid-column: 1 / span 2; margin-top: 40px; height: 400px; }
         
         .text-block-fashion { grid-column: 3 / span 1; align-self: center; margin-top: 40px; }
@@ -340,6 +379,8 @@
             .grid-container { grid-template-columns: 1fr; }
             .section-header-left, .section-header-right, .section-header-center { grid-column: 1 / span 1; text-align: left; margin-top: 40px; }
             
+            .boobyful-overlay-img { left: 80%; width: 150px; top: -40px;} /* Adjust overlay for mobile */
+
             .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { 
                 grid-column: 1 / span 1; margin-top: 20px;
             }
@@ -427,25 +468,25 @@
         <div class="grid-container">
             
             <div class="section-header-left reveal">
-                <h1 class="hero-title hover-target">I LIKE</h1>
+                <h1 class="hero-title hover-target"><span class="project-number">01/</span> I LIKE</h1>
             </div>
 
             <div class="img-block-1 img-container hover-target reveal">
-                <img src="public/ILIKE.jpg" alt="I Like">
+                <img src="public/ILIKE.jpg" class="red-accent" alt="I Like">
                 <div class="scribble-overlay">Design</div>
             </div>
 
             <div class="img-block-2 img-container hover-target reveal">
-                 <video autoplay loop muted playsinline src="public/I_LIKE_RSCHULTZE.mp4"></video>
+                 <video autoplay loop muted playsinline src="public/I_LIKE_RSCHULTZE.mp4" class="red-accent"></video>
                 <div class="red-box-text">Video Art</div>
             </div>
             
             <div class="img-block-extra-1 img-container hover-target reveal">
-                <img src="public/ILIKE_2.jpg" alt="I Like 2">
+                <img src="public/ILIKE_2.jpg" class="red-accent" alt="I Like 2">
             </div>
             
             <div class="img-block-extra-2 img-container hover-target reveal">
-                 <img src="public/ILIKE_3.jpg" alt="I Like 3">
+                 <img src="public/ILIKE_3.jpg" class="red-accent" alt="I Like 3">
             </div>
 
             <div class="text-block-right reveal">
@@ -456,11 +497,12 @@
 
 
             <div class="section-header-right reveal">
-                <h1 class="hero-title hover-target">BOOBYFUL</h1>
+                <img src="public/BOOBIFUL_3.png" class="boobyful-overlay-img" alt="Boobyful accessory">
+                <h1 class="hero-title hover-target"><span class="project-number">02/</span> BOOBYFUL</h1>
+                <p class="subtitle" style="text-align: right; display: block; margin-top:100px;">Structural Design<br>Optics & Form</p>
             </div>
 
             <div class="text-block-bottom-left reveal">
-                <span class="tiny-text">01/</span>
                 <p class="description-text">
                     Constructed from Steel and Silver. This modular two-part steel cube system offers 16 distinct combinations, inviting the wearer to find their specific breast shape. A process of translating organic curves into rigid metal. Each resulting form becomes perfectly imperfect, shifting focus to the inherent beauty and individuality of every body type through industrial geometry.
                 </p>
@@ -472,7 +514,7 @@
                  <span class="tiny-text" style="position:absolute; top:-20px; right:0;">Steel</span>
             </div>
 
-            <div class="img-block-4 img-container hover-target reveal">
+            <div class="img-block-4 img-container hover-target reveal" style="margin-top: 100px;">
                 <img src="public/BOOBIFUL_2.jpg" alt="Boobyful 2">
                 <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Variations</span>
             </div>
@@ -483,7 +525,7 @@
 
             
             <div class="section-header-center reveal">
-                <h1 class="hero-title hover-target">REWORKED</h1>
+                <h1 class="hero-title hover-target"><span class="project-number">03/</span> REWORKED</h1>
             </div>
 
             <div class="img-block-5 img-container hover-target reveal">
@@ -492,7 +534,6 @@
             </div>
 
             <div class="text-block-fashion reveal">
-                <span class="tiny-text">02/</span>
                 <p class="description-text">
                     Material study: Tin Box. Adopting the mantra »same same but different«, this ring series from the »reworked« collection utilizes an identical manufacturing process that paradoxically yields a unique artifact every time. Through the unpredictable nature of compression, the metal develops intricate folds during production, giving the hard industrial rings a soft, fabric-like appearance and textile tactility.
                 </p>
