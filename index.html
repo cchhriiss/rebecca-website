@@ -19,8 +19,10 @@
 
         body {
             background-color: #0a0a0a;
-            /* BG Image */
+            
+            /* BG IMAGE */
             background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
+            
             background-size: cover;
             background-position: center top;
             background-attachment: fixed;
@@ -258,7 +260,6 @@
             line-height: 0.9;
         }
         
-        /* New Project Number Style */
         .project-number {
             font-family: 'Times New Roman', serif;
             font-style: italic;
@@ -271,13 +272,12 @@
 
         .section-header-left { grid-column: 1 / span 3; margin-top: 0; text-align: left; }
         
-        /* Updated Section Right for overlap capability */
         .section-header-right { 
             grid-column: 2 / span 3; 
             margin-top: 80px; 
             text-align: right; 
             border: none; 
-            position: relative; /* For absolute positioning of Boobyful 3 */
+            position: relative; 
         }
         
         .section-header-center { grid-column: 1 / span 4; margin-top: 100px; text-align: center; border: none; }
@@ -288,14 +288,16 @@
 
         /* ELEMENTS */
         
-        /* RED ACCENT CLASS FOR "I LIKE" */
+        /* UPDATED RED ACCENT: MASSIVE SOLID BORDER */
         .red-accent {
-            box-shadow: 15px 15px 0px #e32818; /* Hard red shadow on bottom right */
-            border: 1px solid #000;
+            border: 30px solid #e32818; /* Massive red border */
+            box-sizing: border-box; /* Keeps border inside element flow */
         }
 
         .img-block-1 { grid-column: 1 / span 1; position: relative; height: 300px; margin-top: 20px; }
-        .scribble-overlay { position: absolute; top: 30%; left: 10%; font-family: cursive; color: #0044cc; font-size: 4rem; opacity: 0.8; pointer-events: none; transform: rotate(-10deg); z-index: 10; }
+        
+        /* Scribble removed */
+        /* .scribble-overlay { ... } */
         
         .img-block-2 { grid-column: 2 / span 1; position: relative; height: 300px; background-color: #ddd; display:flex; align-items:center; justify-content:center; margin-top: 80px; }
         .red-box-text { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: black; font-family: serif; font-style: italic; z-index: 2; background: white; padding: 2px 5px; }
@@ -312,18 +314,17 @@
         .img-block-3 { grid-column: 2 / span 2; position: relative; height: 500px; margin-top: 50px; }
         .yellow-overlay { position: absolute; top: 10px; left: 10px; font-size: 10rem; line-height: 0.8; color: #e8d71e; font-family: sans-serif; mix-blend-mode: multiply; pointer-events: none; z-index: 10; }
         
-        .img-block-4 { grid-column: 4 / span 1; height: 400px; margin-top: -50px; } /* Lowered from -100px */
+        .img-block-4 { grid-column: 4 / span 1; height: 400px; margin-top: -50px; }
         
-        /* Style for the overlay image on BOOBYFUL text */
         .boobyful-overlay-img {
             position: absolute;
-            top: -80px; /* Adjust vertical overlap */
+            top: -80px;
             left: 50%;
             transform: translateX(-50%);
-            width: 250px; /* Size of the accessory */
+            width: 250px;
             height: auto;
             z-index: 20;
-            pointer-events: none; /* Click through */
+            pointer-events: none;
         }
 
         .img-block-5 { grid-column: 1 / span 2; margin-top: 40px; height: 400px; }
@@ -342,7 +343,7 @@
 
         /* --- BANNER --- */
         .full-width-banner { width: 100%; height: 70vh; position: relative; }
-        .banner-caption { position: absolute; bottom: 30px; left: 30px; color: white; font-size: 4rem; font-weight: 800; text-transform: uppercase; z-index: 2; line-height: 0.9; }
+        /* Text removed */
 
         /* --- FOOTER --- */
         footer { border-top: 10px solid #000; padding-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -359,12 +360,14 @@
             body { 
                 padding: 0; 
                 cursor: auto; 
-                background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
+                background-image: url('public/BE_MY_HEART_neck.jpg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
                 background-attachment: scroll; 
                 background-position: top center;
                 background-size: 100% auto; 
                 background-repeat: no-repeat;
-                padding-top: 20px;
+                
+                /* UPDATED MOBILE PADDING TO 40PX */
+                padding-top: 40px;
             }
 
             .cursor-dot, .cursor-outline { display: none; }
@@ -379,7 +382,7 @@
             .grid-container { grid-template-columns: 1fr; }
             .section-header-left, .section-header-right, .section-header-center { grid-column: 1 / span 1; text-align: left; margin-top: 40px; }
             
-            .boobyful-overlay-img { left: 80%; width: 150px; top: -40px;} /* Adjust overlay for mobile */
+            .boobyful-overlay-img { left: 80%; width: 150px; top: -40px;}
 
             .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { 
                 grid-column: 1 / span 1; margin-top: 20px;
@@ -473,7 +476,6 @@
 
             <div class="img-block-1 img-container hover-target reveal">
                 <img src="public/ILIKE.jpg" class="red-accent" alt="I Like">
-                <div class="scribble-overlay">Design</div>
             </div>
 
             <div class="img-block-2 img-container hover-target reveal">
@@ -498,7 +500,7 @@
 
             <div class="section-header-right reveal">
                 <img src="public/BOOBIFUL_3.png" class="boobyful-overlay-img" alt="Boobyful accessory">
-                <h1 class="hero-title hover-target"><span class="project-number">02/</span> BOOBYFUL</h1>
+                <h1 class="hero-title hover-target"><span class="project-number">02/</span> BOOBIFUL</h1>
                 <p class="subtitle" style="text-align: right; display: block; margin-top:100px;">Structural Design<br>Optics & Form</p>
             </div>
 
@@ -577,7 +579,6 @@
 
         <div class="full-width-banner img-container reveal">
             <img src="public/Rebecca_Schultze.jpg" alt="Rebecca Schultze">
-            <div class="banner-caption">Modern<br>Vision</div>
         </div>
 
         <footer class="reveal">
