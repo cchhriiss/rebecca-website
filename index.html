@@ -32,6 +32,7 @@
             justify-content: center;
             align-items: flex-start;
 
+            /* DESKTOP PADDING */
             padding-top: 150px; 
             padding-bottom: 60px;
             padding-left: 60px;
@@ -104,7 +105,7 @@
 
         /* --- MOBILE NAV BUTTON & OVERLAY --- */
         .mobile-menu-btn {
-            display: none; /* Hidden on desktop */
+            display: none;
             position: fixed;
             top: 20px;
             right: 20px;
@@ -139,9 +140,7 @@
             transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        .mobile-nav-overlay.open {
-            transform: translateY(0);
-        }
+        .mobile-nav-overlay.open { transform: translateY(0); }
 
         .mobile-nav-link {
             font-family: 'Times New Roman', serif;
@@ -165,7 +164,7 @@
             z-index: 10;
         }
 
-        img {
+        img, video {
             width: 100%;
             height: 100%;
             display: block;
@@ -174,7 +173,7 @@
         }
 
         .img-container { overflow: hidden; }
-        .img-container:hover img { transform: scale(1.05); }
+        .img-container:hover img, .img-container:hover video { transform: scale(1.05); }
 
         /* --- MARQUEE --- */
         .marquee-section {
@@ -197,8 +196,8 @@
         
         .thumbnail-strip {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 10px;
             margin-bottom: 60px;
         }
         .thumb-item { display: flex; flex-direction: column; gap: 5px; opacity: 0.8; transition: opacity 0.3s; }
@@ -274,18 +273,23 @@
         .img-block-2 { grid-column: 2 / span 1; position: relative; height: 300px; background-color: #ddd; display:flex; align-items:center; justify-content:center; margin-top: 80px; }
         .red-box-text { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: black; font-family: serif; font-style: italic; z-index: 2; background: white; padding: 2px 5px; }
         
+        /* New helper classes for scattered images */
+        .img-block-extra-1 { grid-column: 3 / span 1; height: 300px; margin-top: -20px; }
+        .img-block-extra-2 { grid-column: 1 / span 1; height: 300px; margin-top: 60px; }
+        .img-block-extra-3 { grid-column: 2 / span 1; height: 300px; margin-top: 20px; }
+
         .text-block-right { grid-column: 4 / span 1; align-self: center; padding-bottom: 20px; margin-top: -50px; }
         
         .text-block-bottom-left { grid-column: 1 / span 1; align-self: end; padding-bottom: 40px; }
         
-        .img-block-3 { grid-column: 2 / span 1; position: relative; height: 500px; margin-top: 50px; }
+        .img-block-3 { grid-column: 2 / span 2; position: relative; height: 500px; margin-top: 50px; }
         .yellow-overlay { position: absolute; top: 10px; left: 10px; font-size: 10rem; line-height: 0.8; color: #e8d71e; font-family: sans-serif; mix-blend-mode: multiply; pointer-events: none; z-index: 10; }
         
-        .img-block-4 { grid-column: 4 / span 1; height: 500px; margin-top: -100px; }
+        .img-block-4 { grid-column: 4 / span 1; height: 400px; margin-top: -100px; }
         
-        .img-block-5 { grid-column: 2 / span 2; margin-top: 40px; height: 400px; }
+        .img-block-5 { grid-column: 1 / span 2; margin-top: 40px; height: 400px; }
         
-        .text-block-fashion { grid-column: 1 / span 1; align-self: center; margin-top: 40px; }
+        .text-block-fashion { grid-column: 3 / span 1; align-self: center; margin-top: 40px; }
         
         .img-block-6 { grid-column: 4 / span 1; margin-top: 100px; height: 300px; }
 
@@ -316,26 +320,17 @@
             body { 
                 padding: 0; 
                 cursor: auto; 
-                
-                /* FIXED: Mobile Background is 100% width (not zoomed) and sits at top */
                 background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
                 background-attachment: scroll; 
                 background-position: top center;
-                background-size: 100% auto; /* Fits width exactly */
+                background-size: 100% auto; 
                 background-repeat: no-repeat;
-                
-                /* Top Padding allows bg to show before content starts */
-                padding-top: 60vw; /* Responsive height based on width */
+                padding-top: 20px;
             }
 
             .cursor-dot, .cursor-outline { display: none; }
-            
-            /* Hide Desktop Nav */
             .top-overlay-nav { display: none; } 
-            
-            /* Show Mobile Button */
             .mobile-menu-btn { display: block; }
-
             .website-wrapper { padding: 20px; gap: 60px; margin-top: 0; }
 
             .thumbnail-strip { grid-template-columns: repeat(3, 1fr); }
@@ -345,10 +340,10 @@
             .grid-container { grid-template-columns: 1fr; }
             .section-header-left, .section-header-right, .section-header-center { grid-column: 1 / span 1; text-align: left; margin-top: 40px; }
             
-            .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6 { 
+            .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { 
                 grid-column: 1 / span 1; margin-top: 20px;
             }
-            .img-block-1, .img-block-2, .img-block-3, .img-block-4, .img-block-5, .img-block-6 { height: 300px; }
+            .img-block-1, .img-block-2, .img-block-3, .img-block-4, .img-block-5, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { height: 300px; }
             .full-width-banner { height: 40vh; }
             footer { grid-template-columns: 1fr; }
             .marquee-content { font-size: 2rem; }
@@ -397,7 +392,6 @@
                 <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="B&W"></div><span class="thumb-num">07</span></div>
                 <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?q=80&w=200&auto=format&fit=crop" alt="Red Eyes"></div><span class="thumb-num">08</span></div>
                 <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" alt="Man"></div><span class="thumb-num">09</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=200&auto=format&fit=crop" alt="Red"></div><span class="thumb-num">10</span></div>
             </div>
             
             <span class="location-marker">(KARLSRUHE, DE)</span>
@@ -437,66 +431,80 @@
             </div>
 
             <div class="img-block-1 img-container hover-target reveal">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" alt="Portrait">
+                <img src="public/ILIKE.jpg" alt="I Like">
                 <div class="scribble-overlay">Design</div>
             </div>
 
             <div class="img-block-2 img-container hover-target reveal">
-                 <img src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?q=80&w=1000&auto=format&fit=crop" style="opacity: 0.6; mix-blend-mode: multiply;" alt="Eyes">
-                <div class="red-box-text">Technical Precision</div>
+                 <video autoplay loop muted playsinline src="public/I_LIKE_RSCHULTZE.mp4"></video>
+                <div class="red-box-text">Video Art</div>
             </div>
-
-            <div></div>
+            
+            <div class="img-block-extra-1 img-container hover-target reveal">
+                <img src="public/ILIKE_2.jpg" alt="I Like 2">
+            </div>
+            
+            <div class="img-block-extra-2 img-container hover-target reveal">
+                 <img src="public/ILIKE_3.jpg" alt="I Like 3">
+            </div>
 
             <div class="text-block-right reveal">
                 <p class="description-text">
-                    REBECCA SCHULTZE IS AN INDUSTRIAL DESIGNER SPECIALIZING IN EYEWEAR. SHE COMBINES TECHNICAL PRECISION WITH AVANT-GARDE AESTHETICS, FOCUSING ON MATERIALITY, STRUCTURE, AND MODERNIST FORMS.
+                    Material exploration in Copper and Velvet foil. The »I Like You« chain bridges the digital gap, allowing you to easily share affection in the physical realm. An interactive piece where wearers simply peel off the tactile velvet heart foil to 'like' reality. A commentary on social currency transformed into tangible connection.
                 </p>
             </div>
 
 
             <div class="section-header-right reveal">
                 <h1 class="hero-title hover-target">BOOBYFUL</h1>
-                <p class="subtitle" style="text-align: right;">Structural Design<br>Optics & Form</p>
             </div>
 
             <div class="text-block-bottom-left reveal">
                 <span class="tiny-text">01/</span>
                 <p class="description-text">
-                    DEVELOPING NEW HINGE MECHANISMS AND TITANIUM FRAMES FOR THE UPCOMING COLLECTION. FOCUSING ON MINIMALIST CONSTRUCTION AND ERGONOMIC FIT.
+                    Constructed from Steel and Silver. This modular two-part steel cube system offers 16 distinct combinations, inviting the wearer to find their specific breast shape. A process of translating organic curves into rigid metal. Each resulting form becomes perfectly imperfect, shifting focus to the inherent beauty and individuality of every body type through industrial geometry.
                 </p>
             </div>
 
             <div class="img-block-3 img-container hover-target reveal">
-                 <div class="yellow-overlay">T<br>E<br>C<br>H</div>
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Man Portrait">
-                 <span class="tiny-text" style="position:absolute; top:-20px; right:0;">View Technicals</span>
+                 <div class="yellow-overlay">S<br>H<br>A<br>P<br>E</div>
+                <img src="public/BOOBIFUL.jpg" alt="Boobyful">
+                 <span class="tiny-text" style="position:absolute; top:-20px; right:0;">Steel</span>
             </div>
 
             <div class="img-block-4 img-container hover-target reveal">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Fashion Red">
-                <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Materials</span>
+                <img src="public/BOOBIFUL_2.jpg" alt="Boobyful 2">
+                <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Variations</span>
             </div>
+            
+            <div class="img-block-extra-3 img-container hover-target reveal">
+                 <img src="public/BF.png" alt="BF">
+            </div>
+
             
             <div class="section-header-center reveal">
                 <h1 class="hero-title hover-target">REWORKED</h1>
             </div>
 
             <div class="img-block-5 img-container hover-target reveal">
-                <img src="https://images.unsplash.com/photo-1525431836161-e40d68425074?q=80&w=1000&auto=format&fit=crop" alt="Eye Detail">
-                 <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">3D Modeling</span>
+                <img src="public/Blechringe.png" alt="Blechringe">
+                 <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Fabric Metal</span>
             </div>
 
             <div class="text-block-fashion reveal">
                 <span class="tiny-text">02/</span>
                 <p class="description-text">
-                    GOOD DESIGN IS INVISIBLE. IT IS THE BALANCE BETWEEN AESTHETICS AND ENGINEERING. WE STRIVE FOR THE PERFECT SYNTHESIS OF CRAFTSMANSHIP AND MODERNISM.
+                    Material study: Tin Box. Adopting the mantra »same same but different«, this ring series from the »reworked« collection utilizes an identical manufacturing process that paradoxically yields a unique artifact every time. Through the unpredictable nature of compression, the metal develops intricate folds during production, giving the hard industrial rings a soft, fabric-like appearance and textile tactility.
                 </p>
             </div>
 
             <div class="img-block-6 img-container hover-target reveal">
-                <img src="https://images.unsplash.com/photo-1575439400780-388274d1a12e?q=80&w=1000&auto=format&fit=crop" alt="Blue Hat">
+                <img src="public/RW.png" alt="Reworked">
                  <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Process</span>
+            </div>
+            
+            <div class="img-block-extra-1 img-container hover-target reveal" style="grid-column: 3 / span 1; margin-top: 150px;">
+                <img src="public/RW1.png" alt="Reworked Detail">
             </div>
 
         </div>
@@ -527,7 +535,7 @@
         </div>
 
         <div class="full-width-banner img-container reveal">
-            <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?q=80&w=2070&auto=format&fit=crop" alt="Editorial Fashion">
+            <img src="public/Rebecca_Schultze.jpg" alt="Rebecca Schultze">
             <div class="banner-caption">Modern<br>Vision</div>
         </div>
 
@@ -574,7 +582,7 @@
         // Cursor
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
-        const hoverTargets = document.querySelectorAll('.hover-target, a, img, .project-row, .top-nav-list li');
+        const hoverTargets = document.querySelectorAll('.hover-target, a, img, video, .project-row, .top-nav-list li');
 
         window.addEventListener('mousemove', (e) => {
             const posX = e.clientX;
@@ -589,7 +597,7 @@
             target.addEventListener('mouseleave', () => { document.body.classList.remove('hovering'); });
         });
 
-        // Scroll Animation (Intersection Observer)
+        // Scroll Animation
         const observerOptions = {
             root: null,
             rootMargin: '0px',
