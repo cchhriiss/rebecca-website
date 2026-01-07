@@ -35,7 +35,7 @@
             align-items: flex-start;
 
             /* DESKTOP PADDING */
-            padding-top: 250px; 
+            padding-top: 200px; 
             padding-bottom: 60px;
             padding-left: 60px;
             padding-right: 60px;
@@ -374,6 +374,17 @@
         .footer-col span { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; display: block; }
         .footer-col a { text-decoration: none; color: #333; font-size: 0.9rem; text-transform: uppercase; }
 
+.fingers-top {
+    position: absolute;
+    /* Adjust 'top' to pull the image up. Negative value moves it UP outside the box. */
+    top: -100px; 
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 50; /* Ensures it sits on top of text */
+    pointer-events: none; /* Allows you to click links underneath it */
+    background-color: #ffffff; /* Changed to White */
+}
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 900px) {
             
@@ -382,7 +393,7 @@
                 cursor: auto; 
                 background-image: url('public/bg.jpg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
                 background-attachment: scroll; 
-                background-position: top center;
+                background-position: top center -100px;
                 background-size: 100% auto; 
                 background-repeat: no-repeat;
                 padding-top: 80px; 
@@ -413,6 +424,9 @@
             footer { grid-template-columns: 1fr; padding-top: 80px; /* Extra padding for overlay clearance */ } 
             .marquee-content { font-size: 2rem; }
         }
+            .fingers-top {
+        top: -50px; /* Smaller offset for mobile */
+    }
     </style>
 </head>
 <body>
@@ -445,8 +459,9 @@
     </div>
 
     <div class="website-wrapper">
+<img src="public/image.png" class="fingers-top" alt="Holding Paper">
 
-        <div class="gallery-index-section reveal">
+    <div class="gallery-index-section reveal">
             <div class="thumbnail-strip hover-target">
                 <div class="thumb-item"><div class="thumb-img-box"><img src="public/ILIKE_3.png" alt="B&W"></div><span class="thumb-num">01</span></div>
                 <div class="thumb-item"><div class="thumb-img-box"><img src="public/BF.png" alt="Red Eyes"></div><span class="thumb-num">02</span></div>
