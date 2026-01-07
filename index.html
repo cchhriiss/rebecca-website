@@ -15,17 +15,20 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         body {
             background-color: #0a0a0a;
             
             /* BG IMAGE */
-            background-image: url('public/bg.jpg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
+            background-image: url('public/bg.jpg'); 
             
             background-size: cover;
-            background-position: center -400px;
+            background-position: center top; /* Default position */
             background-attachment: fixed;
+            background-repeat: no-repeat;
+            
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             color: #000;
             line-height: 1.4;
@@ -34,11 +37,11 @@
             justify-content: center;
             align-items: flex-start;
 
-            /* DESKTOP PADDING */
-            padding-top: 200px; 
+            /* DESKTOP PADDING - Pushes paper down */
+            padding-top: 35vh; 
             padding-bottom: 60px;
-            padding-left: 60px;
-            padding-right: 60px;
+            padding-left: 20px;
+            padding-right: 20px;
             
             min-height: 100vh;
         }
@@ -164,6 +167,20 @@
             flex-direction: column;
             gap: 120px;
             z-index: 10;
+            /* REMOVED mix-blend-mode here to fix invisible images */
+        }
+
+        /* --- FINGERS OVERLAY --- */
+        .fingers-top {
+            position: absolute;
+            top: -5%; /* Adjust based on image aspect ratio */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%; /* Match container width */
+            max-width: 1440px; /* Same as wrapper max-width */
+            height: auto;
+            z-index: 50; 
+            pointer-events: none; 
         }
 
         img, video {
@@ -327,36 +344,6 @@
         
         .img-block-6 { grid-column: 4 / span 1; margin-top: 100px; height: 300px; }
 
-        /* --- BANNER --- */
-        .full-width-banner { 
-            width: 100%; 
-            height: 70vh; 
-            position: relative; 
-            /* overflow is VISIBLE so overlay can hang out */
-            overflow: visible; 
-        }
-        
-        /* Inner container handles the main image zoom/crop */
-        .banner-inner-img {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Overlapping image style updated */
-        .banner-overlay-left {
-            position: absolute;
-            top: auto; 
-            bottom: -80px; /* Hangs off the bottom edge */
-            left: 50px; 
-            width: 350px;
-            height: auto;
-            z-index: 20;
-            pointer-events: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
         /* --- CV LIST --- */
         .project-list-section { width: 100%; border-top: 2px solid #000; padding-top: 20px; margin-top: 100px; }
         .project-row { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #e0e0e0; font-size: 1rem; text-transform: uppercase; font-weight: 700; transition: background 0.3s, padding 0.3s; }
@@ -364,6 +351,21 @@
         .p-client { width: 40%; }
         .p-service { width: 40%; font-weight: 400; color: #555; }
         .p-year { width: 20%; text-align: right; }
+
+        /* --- BANNER --- */
+        .full-width-banner { width: 100%; height: 70vh; position: relative; overflow: visible; }
+        .banner-inner-img { width: 100%; height: 100%; overflow: hidden; position: relative; }
+        .banner-overlay-left {
+            position: absolute;
+            top: auto; 
+            bottom: -80px; 
+            left: 50px; 
+            width: 350px;
+            height: auto;
+            z-index: 20;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
         /* --- FOOTER --- */
         footer { border-top: 10px solid #000; padding-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; z-index: 5; background: white; }
@@ -374,35 +376,24 @@
         .footer-col span { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; display: block; }
         .footer-col a { text-decoration: none; color: #333; font-size: 0.9rem; text-transform: uppercase; }
 
-.fingers-top {
-    position: absolute;
-    /* Adjust 'top' to pull the image up. Negative value moves it UP outside the box. */
-    top: -100px; 
-    left: 0;
-    width: 100%;
-    height: auto;
-    z-index: 50; /* Ensures it sits on top of text */
-    pointer-events: none; /* Allows you to click links underneath it */
-    background-color: #ffffff; /* Changed to White */
-}
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 900px) {
             
             body { 
                 padding: 0; 
                 cursor: auto; 
-                background-image: url('public/bg.jpg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
+                /* FIXED: Background position moved down to show eyes */
+                background-position: center 20%; 
                 background-attachment: scroll; 
-                background-position: top center;
-                background-size: 100% auto; 
-                background-repeat: no-repeat;
-                padding-top: 100px; 
+                padding-top: 60vh; /* Push content down significantly so paper starts below face */
             }
 
             .cursor-dot, .cursor-outline { display: none; }
             .top-overlay-nav { display: none; } 
             .mobile-menu-btn { display: block; }
-            .website-wrapper { padding: 20px; gap: 60px; margin-top: 0; }
+            .website-wrapper { padding: 20px; gap: 60px; margin-top: 0; width: 95%; max-width: none; }
+            
+            .fingers-top { top: -20px; width: 100%; }
 
             .thumbnail-strip { grid-template-columns: repeat(3, 1fr); }
             .header-grid-layout { grid-template-columns: 1fr; gap: 20px; }
@@ -413,20 +404,27 @@
             
             .boobyful-overlay-img { left: 80%; width: 150px; top: -40px;}
             
-            /* Mobile positioning for overlay: left aligned, hanging off bottom */
-            .banner-overlay-left { width: 150px; bottom: -40px; left: 20px; top: auto; }
+            .banner-overlay-left { width: 180px; top: -60px; left: 10px; }
 
             .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { 
                 grid-column: 1 / span 1; margin-top: 20px;
+                /* FIXED: Ensure images don't overflow horizontally */
+                max-width: 100%;
             }
+            .img-block-extra-1 {
+                /* Specific fix for RW1.png on mobile */
+                max-width: 100%;
+                overflow: hidden;
+            }
+            .img-block-extra-1 img {
+                object-fit: contain; /* Ensure the whole image fits */
+            }
+
             .img-block-1, .img-block-2, .img-block-3, .img-block-4, .img-block-5, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { height: 300px; }
             .full-width-banner { height: 40vh; }
-            footer { grid-template-columns: 1fr; padding-top: 80px; /* Extra padding for overlay clearance */ } 
+            footer { grid-template-columns: 1fr; padding-top: 80px; } 
             .marquee-content { font-size: 2rem; }
         }
-            .fingers-top {
-        top: -50px; /* Smaller offset for mobile */
-    }
     </style>
 </head>
 <body>
@@ -459,9 +457,10 @@
     </div>
 
     <div class="website-wrapper">
-<img src="public/image.png" class="fingers-top" alt="Holding Paper">
+        
+        <img src="public/image.png" class="fingers-top" alt="Holding Paper">
 
-    <div class="gallery-index-section reveal">
+        <div class="gallery-index-section reveal">
             <div class="thumbnail-strip hover-target">
                 <div class="thumb-item"><div class="thumb-img-box"><img src="public/ILIKE_3.png" alt="B&W"></div><span class="thumb-num">01</span></div>
                 <div class="thumb-item"><div class="thumb-img-box"><img src="public/BF.png" alt="Red Eyes"></div><span class="thumb-num">02</span></div>
