@@ -32,8 +32,7 @@
             justify-content: center;
             align-items: flex-start;
 
-            /* DESKTOP PADDING */
-            padding-top: 350px; 
+            padding-top: 150px; 
             padding-bottom: 60px;
             padding-left: 60px;
             padding-right: 60px;
@@ -70,7 +69,7 @@
             background-color: rgba(255, 255, 255, 0.3); border-color: transparent;
         }
 
-        /* --- TOP OVERLAY NAVIGATION --- */
+        /* --- DESKTOP NAV --- */
         .top-overlay-nav {
             position: fixed;
             top: 40px;
@@ -102,6 +101,55 @@
             transition: opacity 0.3s;
         }
         .top-nav-list li:hover { opacity: 0.7; text-decoration: underline; }
+
+        /* --- MOBILE NAV BUTTON & OVERLAY --- */
+        .mobile-menu-btn {
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: white;
+            mix-blend-mode: difference;
+            cursor: pointer;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #0a0a0a;
+            z-index: 199;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .mobile-nav-overlay.open {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-link {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+        }
 
         /* --- THE WHITE SHEET CONTAINER --- */
         .website-wrapper {
@@ -268,56 +316,38 @@
             body { 
                 padding: 0; 
                 cursor: auto; 
-                /* Restore Background Image on Mobile */
-                background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
-                background-attachment: scroll; /* Better for mobile performance */
-                background-position: top center;
-                background-size: cover;
                 
-                /* Padding top creates space for the nav/header on bg image */
-                padding-top: 250px;
+                /* FIXED: Mobile Background is 100% width (not zoomed) and sits at top */
+                background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
+                background-attachment: scroll; 
+                background-position: top center;
+                background-size: 100% auto; /* Fits width exactly */
+                background-repeat: no-repeat;
+                
+                /* Top Padding allows bg to show before content starts */
+                padding-top: 60vw; /* Responsive height based on width */
             }
 
             .cursor-dot, .cursor-outline { display: none; }
             
-            /* SHOW NAV ON MOBILE */
-            .top-overlay-nav { 
-                display: flex; 
-                top: 20px;
-                padding: 0 10px;
-            }
+            /* Hide Desktop Nav */
+            .top-overlay-nav { display: none; } 
             
-            .top-nav-list {
-                flex-wrap: wrap; /* Wrap links if they are too wide */
-                justify-content: center;
-                gap: 15px;
-                padding: 10px 15px;
-            }
-            
-            .top-nav-list li {
-                font-size: 0.85rem; /* Slightly smaller text for mobile */
-            }
+            /* Show Mobile Button */
+            .mobile-menu-btn { display: block; }
 
-            .website-wrapper { 
-                padding: 20px; 
-                gap: 60px; 
-                margin-top: 0; 
-            }
+            .website-wrapper { padding: 20px; gap: 60px; margin-top: 0; }
 
             .thumbnail-strip { grid-template-columns: repeat(3, 1fr); }
             .header-grid-layout { grid-template-columns: 1fr; gap: 20px; }
             h1.gallery-huge-title { font-size: 18vw; word-spacing: normal; }
             
             .grid-container { grid-template-columns: 1fr; }
-            
-            .section-header-left, .section-header-right, .section-header-center { 
-                grid-column: 1 / span 1; text-align: left; margin-top: 40px; 
-            }
+            .section-header-left, .section-header-right, .section-header-center { grid-column: 1 / span 1; text-align: left; margin-top: 40px; }
             
             .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6 { 
                 grid-column: 1 / span 1; margin-top: 20px;
             }
-            
             .img-block-1, .img-block-2, .img-block-3, .img-block-4, .img-block-5, .img-block-6 { height: 300px; }
             .full-width-banner { height: 40vh; }
             footer { grid-template-columns: 1fr; }
@@ -341,6 +371,18 @@
             <li>Clients</li>
         </ul>
     </nav>
+
+    <div class="mobile-menu-btn" onclick="toggleMenu()">MENU +</div>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">Workshops</a>
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">Ausstellungen</a>
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">Projects</a>
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">Portfolio</a>
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">CV</a>
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">Press</a>
+        <a href="#" class="mobile-nav-link" onclick="toggleMenu()">Clients</a>
+    </div>
 
     <div class="website-wrapper">
 
@@ -517,6 +559,18 @@
     </div>
 
     <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('mobileNav');
+            const btn = document.querySelector('.mobile-menu-btn');
+            nav.classList.toggle('open');
+            if(nav.classList.contains('open')) {
+                btn.textContent = "CLOSE -";
+            } else {
+                btn.textContent = "MENU +";
+            }
+        }
+
         // Cursor
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
@@ -539,7 +593,7 @@
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1 // Trigger when 10% visible
+            threshold: 0.1 
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
