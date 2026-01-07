@@ -15,11 +15,8 @@
 
         body {
             background-color: #0a0a0a;
-            
-            /* BG: Technical / Industrial / Design Studio Vibe */
-            /* Using the local image as requested previously, or a fallback technical background */
-            background-image: url('public/bg.jpeg'); 
-            
+            /* BG Image */
+            background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center top;
             background-attachment: fixed;
@@ -31,8 +28,7 @@
             justify-content: center;
             align-items: flex-start;
 
-            /* PADDING: Pushes the white sheet down */
-            padding-top: 200px; 
+            padding-top: 350px; 
             padding-bottom: 60px;
             padding-left: 60px;
             padding-right: 60px;
@@ -57,6 +53,35 @@
             background-color: rgba(255, 255, 255, 0.3); border-color: transparent;
         }
 
+        /* --- TOP OVERLAY NAVIGATION --- */
+        .top-overlay-nav {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+
+        .top-nav-list {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        .top-nav-list li {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #ffffff;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+        .top-nav-list li:hover { opacity: 0.7; text-decoration: underline; }
+
+
         /* --- THE WHITE SHEET CONTAINER --- */
         .website-wrapper {
             background-color: #ffffff;
@@ -68,6 +93,7 @@
             display: flex;
             flex-direction: column;
             gap: 80px;
+            z-index: 10;
         }
 
         img {
@@ -78,7 +104,6 @@
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Image Hover Effect */
         .img-container { overflow: hidden; }
         .img-container:hover img { transform: scale(1.08); }
 
@@ -100,56 +125,86 @@
 
         /* --- TOP SECTION --- */
         .gallery-index-section { width: 100%; border-bottom: 2px solid #000; padding-bottom: 40px; }
-        .thumbnail-strip { display: grid; grid-template-columns: repeat(11, 1fr); gap: 10px; margin-bottom: 40px; }
+        
+        .thumbnail-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 60px;
+        }
         .thumb-item { display: flex; flex-direction: column; gap: 5px; opacity: 0.8; transition: opacity 0.3s; }
         .thumb-item:hover { opacity: 1; }
         .thumb-img-box { aspect-ratio: 1 / 1; background-color: #f0f0f0; overflow: hidden; }
         .thumb-num { font-size: 0.5rem; font-weight: 700; }
         
-        .gallery-mid-row { margin-bottom: 80px; }
-        .serif-menu { list-style: none; }
-        .serif-menu li {
-            font-family: 'Times New Roman', Times, serif; font-size: 1.4rem;
-            line-height: 1.3; font-style: italic; color: #333; display: inline-block; margin-right: 40px;
-            transition: color 0.3s;
+        .location-marker {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; 
+            display: block; margin-bottom: 20px;
         }
-        .serif-menu li:hover { color: #000; text-decoration: underline; }
 
-        .gallery-header-bottom { position: relative; }
-        .gallery-meta { display: flex; justify-content: space-between; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; margin-bottom: -1vw; position: relative; z-index: 2; }
-        
+        .header-grid-layout {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 40px;
+            align-items: end;
+        }
+
         h1.gallery-huge-title {
-            font-size: clamp(3.5rem, 11.5vw, 12rem); 
+            font-size: clamp(3.5rem, 10vw, 11rem); 
             font-weight: 900; text-transform: uppercase;
             line-height: 0.85; letter-spacing: -0.04em; margin: 0; transform: scaleY(1.1);
             transform-origin: bottom left; width: 100%;
-            word-spacing: 10px;
+            word-spacing: 5px;
         }
 
-        /* --- GRID LAYOUT --- */
-        .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 20px; width: 100%; }
+        .header-side-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            text-align: left;
+            padding-bottom: 10px;
+        }
 
+        .side-nav-list { list-style: none; }
+        .side-nav-list li { font-size: 0.8rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; cursor: pointer; transition: color 0.3s;}
+        .side-nav-list li:hover { color: #555; }
+        
+        .side-services-text {
+            font-size: 0.7rem; text-transform: uppercase; line-height: 1.5; font-weight: 500;
+        }
+
+        /* --- MAIN GRID --- */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            grid-gap: 20px; 
+            width: 100%; 
+        }
+
+        /* HERO TITLE - Used for I LIKE, BOOBYFUL, REWORKED */
         h1.hero-title {
-            font-size: clamp(3rem, 7vw, 7rem); font-weight: 800; letter-spacing: -0.03em;
-            margin-bottom: 20px; text-transform: uppercase; line-height: 0.9;
+            font-size: clamp(3rem, 7vw, 7rem); 
+            font-weight: 800; 
+            letter-spacing: -0.03em;
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            line-height: 0.9;
         }
-        h2.section-title {
-            font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; text-transform: uppercase;
-            margin-bottom: 20px; letter-spacing: -0.02em;
+
+        .section-header-block {
+            grid-column: 1 / span 4;
+            margin-top: 60px;
+            border-top: 1px solid #000;
+            padding-top: 40px;
         }
-        .subtitle { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; max-width: 200px; }
+
+        .subtitle { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; max-width: 200px; margin-top: 10px; }
         .tiny-text { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; display: block; font-weight: 600; }
         .description-text { font-size: 0.75rem; text-transform: uppercase; line-height: 1.6; text-align: justify; font-weight: 500; }
 
-        /* Specific Items */
-        header { grid-column: 3 / span 2; display: flex; flex-direction: column; gap: 20px; margin-bottom: 80px; text-align: left; }
-        .nav-list { list-style: none; }
-        .nav-list li { font-size: 0.75rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
-        .header-services { margin-top: 20px; font-size: 0.65rem; text-transform: uppercase; max-width: 320px; line-height: 1.4; }
-
         .hero-text-block { grid-column: 1 / span 4; }
         
-        /* IMAGE STYLES & OVERLAYS */
+        /* IMAGES */
         .img-block-1 { grid-column: 1 / span 1; position: relative; height: 300px; }
         .scribble-overlay { position: absolute; top: 30%; left: 10%; font-family: cursive; color: #0044cc; font-size: 4rem; opacity: 0.8; pointer-events: none; transform: rotate(-10deg); z-index: 10; }
         
@@ -157,7 +212,8 @@
         .red-box-text { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: black; font-family: serif; font-style: italic; z-index: 2; background: white; padding: 2px 5px; }
         
         .text-block-right { grid-column: 4 / span 1; align-self: end; padding-bottom: 20px; }
-        .details-title-block { grid-column: 1 / span 4; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 40px; }
+        
+        /* Grid Alignment classes */
         .text-block-bottom-left { grid-column: 1 / span 1; align-self: end; padding-bottom: 40px; }
         
         .img-block-3 { grid-column: 2 / span 1; position: relative; height: 500px; }
@@ -193,13 +249,13 @@
         @media (max-width: 900px) {
             body { padding: 0; cursor: auto; background-image: none; background-color: #111; }
             .cursor-dot, .cursor-outline { display: none; }
-            .website-wrapper { padding: 20px; gap: 40px; }
-            .thumbnail-strip { grid-template-columns: repeat(6, 1fr); }
-            .thumb-item:nth-child(n+7) { display: none; }
-            h1.gallery-huge-title { font-size: 13vw; word-spacing: normal; }
+            .top-overlay-nav { display: none; } 
+            .website-wrapper { padding: 20px; gap: 40px; margin-top: 0; }
+            .thumbnail-strip { grid-template-columns: repeat(3, 1fr); }
+            .header-grid-layout { grid-template-columns: 1fr; gap: 20px; }
+            h1.gallery-huge-title { font-size: 18vw; word-spacing: normal; }
             .grid-container { grid-template-columns: 1fr; }
-            header, .hero-text-block, .img-block-1, .img-block-2, .text-block-right, .details-title-block, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6 { grid-column: 1 / span 1; }
-            header { margin-bottom: 40px; }
+            .hero-text-block, .section-header-block, .img-block-1, .img-block-2, .text-block-right, .details-title-block, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6 { grid-column: 1 / span 1; }
             .img-block-1, .img-block-2, .img-block-3, .img-block-4, .img-block-5, .img-block-6 { height: 300px; }
             .full-width-banner { height: 40vh; }
             footer { grid-template-columns: 1fr; }
@@ -213,65 +269,68 @@
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
+    <nav class="top-overlay-nav hover-target">
+        <ul class="top-nav-list">
+            <li>Workshops</li>
+            <li>Ausstellungen</li>
+            <li>Projects</li>
+            <li>Portfolio</li>
+            <li>CV</li>
+            <li>Press</li>
+            <li>Clients</li>
+        </ul>
+    </nav>
+
     <div class="website-wrapper">
 
         <div class="gallery-index-section">
             <div class="thumbnail-strip hover-target">
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1620392947230-c3d596d66487?auto=format&fit=crop&w=200" alt="Sketch"></div><span class="thumb-num">01</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=200" alt="Glasses"></div><span class="thumb-num">02</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=200" alt="Tech"></div><span class="thumb-num">03</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=200" alt="Lens"></div><span class="thumb-num">04</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1616428453473-b3c0e3522268?auto=format&fit=crop&w=200" alt="Detail"></div><span class="thumb-num">05</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1550920405-b0d355b23616?auto=format&fit=crop&w=200" alt="CAD"></div><span class="thumb-num">06</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200" alt="Ref"></div><span class="thumb-num">07</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=200" alt="Shades"></div><span class="thumb-num">08</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1589829545456-448b45f2713f?auto=format&fit=crop&w=200" alt="Hands"></div><span class="thumb-num">09</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1620392947230-c3d596d66487?auto=format&fit=crop&w=200" alt="Drawing"></div><span class="thumb-num">10</span></div>
-                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1512413316925-fd5d8c6e2578?auto=format&fit=crop&w=200" alt="Man"></div><span class="thumb-num">11</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1620392947230-c3d596d66487?auto=format&fit=crop&w=400" alt="Sketch"></div><span class="thumb-num">01</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=400" alt="Glasses"></div><span class="thumb-num">02</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400" alt="Tech"></div><span class="thumb-num">03</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=400" alt="Lens"></div><span class="thumb-num">04</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1616428453473-b3c0e3522268?auto=format&fit=crop&w=400" alt="Detail"></div><span class="thumb-num">05</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1550920405-b0d355b23616?auto=format&fit=crop&w=400" alt="CAD"></div><span class="thumb-num">06</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400" alt="Ref"></div><span class="thumb-num">07</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=400" alt="Shades"></div><span class="thumb-num">08</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1589829545456-448b45f2713f?auto=format&fit=crop&w=400" alt="Hands"></div><span class="thumb-num">09</span></div>
+                <div class="thumb-item"><div class="thumb-img-box"><img src="https://images.unsplash.com/photo-1620392947230-c3d596d66487?auto=format&fit=crop&w=400" alt="Drawing"></div><span class="thumb-num">10</span></div>
             </div>
             
-            <div class="gallery-mid-row">
-                <ul class="serif-menu hover-target">
-                    <li>Eyewear Design</li>
-                    <li>Technical</li>
-                    <li>Projects</li>
-                    <li>Portfolio</li>
-                </ul>
-            </div>
-            
-            <div class="gallery-header-bottom">
-                <div class="gallery-meta"><span>(KARLSRUHE, DE)</span><span>SCROLL FOR WORK</span></div>
+            <span class="location-marker">(KARLSRUHE, DE)</span>
+
+            <div class="header-grid-layout">
                 <h1 class="gallery-huge-title hover-target">REBECCA SCHULTZE</h1>
+                
+                <div class="header-side-info">
+                    <ul class="side-nav-list hover-target">
+                        <li>About</li>
+                        <li>CV / Resume</li>
+                        <li>Contact</li>
+                    </ul>
+                    <div class="side-services-text">
+                        Industrial Design // Eyewear Design // 3D CAD Modeling // Technical Drawings // Prototyping // Acetate & Titanium // Brand Identity
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="marquee-section">
             <div class="marquee-track">
-                <span class="marquee-content">Rebecca Schultze — </span>
-                <span class="marquee-content filled">Industrial Design — </span>
-                <span class="marquee-content">Wolfgang Proksch — </span>
-                <span class="marquee-content filled">Technical Eyewear — </span>
-                <span class="marquee-content">Rebecca Schultze — </span>
-                <span class="marquee-content filled">Industrial Design — </span>
-                <span class="marquee-content">Wolfgang Proksch — </span>
+                <span class="marquee-content">NOD — </span>
+                <span class="marquee-content filled">Product Design — </span>
+                <span class="marquee-content">Wearable art — </span>
+                <span class="marquee-content filled">custom work — </span>
+                <span class="marquee-content">NOD — </span>
+                <span class="marquee-content filled">Product Design — </span>
+                <span class="marquee-content">Wearable art — </span>
             </div>
         </div>
 
         <div class="grid-container">
             
-            <header>
-                <ul class="nav-list hover-target">
-                    <li>About</li>
-                    <li>CV / Resume</li>
-                    <li>Contact</li>
-                </ul>
-                <div class="header-services">
-                    Industrial Design // Eyewear Design // 3D CAD Modeling // Technical Drawings // Prototyping // Acetate & Titanium // Brand Identity
-                </div>
-            </header>
-
             <div class="hero-text-block">
-                <h1 class="hero-title hover-target">RS.DESIGN</h1>
+                <h1 class="hero-title hover-target">I LIKE</h1>
             </div>
 
             <div class="img-block-1 img-container hover-target">
@@ -288,12 +347,12 @@
 
             <div class="text-block-right">
                 <p class="description-text">
-                    REBECCA SCHULTZE IS AN INDUSTRIAL DESIGNER SPECIALIZING IN EYEWEAR. CURRENTLY DESIGNING AT <strong>WOLFGANG PROKSCH</strong>. SHE COMBINES TECHNICAL PRECISION WITH AVANT-GARDE AESTHETICS, FOCUSING ON MATERIALITY, STRUCTURE, AND MODERNIST FORMS.
+                    REBECCA SCHULTZE IS AN INDUSTRIAL DESIGNER SPECIALIZING IN EYEWEAR. SHE COMBINES TECHNICAL PRECISION WITH AVANT-GARDE AESTHETICS, FOCUSING ON MATERIALITY, STRUCTURE, AND MODERNIST FORMS.
                 </p>
             </div>
 
-            <div class="details-title-block">
-                <h2 class="section-title hover-target">Projects</h2>
+            <div class="section-header-block">
+                <h1 class="hero-title hover-target">BOOBYFUL</h1>
                 <p class="subtitle">Structural Design<br>Optics & Form</p>
             </div>
 
@@ -315,7 +374,9 @@
                 <span class="tiny-text" style="text-align: right; display:block; margin-top:5px;">Materials</span>
             </div>
             
-            <div></div>
+            <div class="section-header-block">
+                <h1 class="hero-title hover-target">REWORKED</h1>
+            </div>
 
             <div class="img-block-5 img-container hover-target">
                 <img src="https://images.unsplash.com/photo-1550920405-b0d355b23616?q=80&w=1000&auto=format&fit=crop" alt="CAD Design">
@@ -325,7 +386,7 @@
             <div class="text-block-fashion">
                 <span class="tiny-text">02/</span>
                 <p class="description-text">
-                    GOOD DESIGN IS INVISIBLE. IT IS THE BALANCE BETWEEN AESTHETICS AND ENGINEERING. AT WOLFGANG PROKSCH, WE STRIVE FOR THE PERFECT SYNTHESIS OF JAPANESE CRAFTSMANSHIP AND GERMAN MODERNISM.
+                    GOOD DESIGN IS INVISIBLE. IT IS THE BALANCE BETWEEN AESTHETICS AND ENGINEERING. WE STRIVE FOR THE PERFECT SYNTHESIS OF CRAFTSMANSHIP AND MODERNISM.
                 </p>
             </div>
 
@@ -342,19 +403,19 @@
             <h2 class="section-title">Experience & Education</h2>
             
             <div class="project-row hover-target">
+                <span class="p-client">NOD</span>
+                <span class="p-service">Product Design / Custom Work</span>
+                <span class="p-year">Present</span>
+            </div>
+            <div class="project-row hover-target">
                 <span class="p-client">Wolfgang Proksch</span>
                 <span class="p-service">Eyewear Designer</span>
-                <span class="p-year">Present</span>
+                <span class="p-year">Previous</span>
             </div>
             <div class="project-row hover-target">
                 <span class="p-client">ByWP</span>
                 <span class="p-service">Industrial Design</span>
                 <span class="p-year">2023</span>
-            </div>
-            <div class="project-row hover-target">
-                <span class="p-client">HfG Karlsruhe (Hypothetical)</span>
-                <span class="p-service">Product Design</span>
-                <span class="p-year">Education</span>
             </div>
             <div class="project-row hover-target">
                 <span class="p-client">Freelance</span>
@@ -398,7 +459,7 @@
     <script>
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
-        const hoverTargets = document.querySelectorAll('.hover-target, a, img, .project-row');
+        const hoverTargets = document.querySelectorAll('.hover-target, a, img, .project-row, .top-nav-list li');
 
         window.addEventListener('mousemove', (e) => {
             const posX = e.clientX;
