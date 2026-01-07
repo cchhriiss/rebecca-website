@@ -287,22 +287,16 @@
         .description-text { font-size: 0.75rem; text-transform: uppercase; line-height: 1.6; text-align: justify; font-weight: 500; }
 
         /* ELEMENTS */
-        
-        /* UPDATED RED ACCENT: MASSIVE SOLID BORDER */
         .red-accent {
-            border: 30px solid #e32818; /* Massive red border */
-            box-sizing: border-box; /* Keeps border inside element flow */
+            border: 30px solid #e32818;
+            box-sizing: border-box;
         }
 
         .img-block-1 { grid-column: 1 / span 1; position: relative; height: 300px; margin-top: 20px; }
         
-        /* Scribble removed */
-        /* .scribble-overlay { ... } */
-        
         .img-block-2 { grid-column: 2 / span 1; position: relative; height: 300px; background-color: #ddd; display:flex; align-items:center; justify-content:center; margin-top: 80px; }
         .red-box-text { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: black; font-family: serif; font-style: italic; z-index: 2; background: white; padding: 2px 5px; }
         
-        /* New helper classes */
         .img-block-extra-1 { grid-column: 3 / span 1; height: 300px; margin-top: -20px; }
         .img-block-extra-2 { grid-column: 1 / span 1; height: 300px; margin-top: 60px; }
         .img-block-extra-3 { grid-column: 2 / span 1; height: 300px; margin-top: 20px; }
@@ -333,6 +327,36 @@
         
         .img-block-6 { grid-column: 4 / span 1; margin-top: 100px; height: 300px; }
 
+        /* --- BANNER --- */
+        .full-width-banner { 
+            width: 100%; 
+            height: 70vh; 
+            position: relative; 
+            /* overflow is VISIBLE so overlay can hang out */
+            overflow: visible; 
+        }
+        
+        /* Inner container handles the main image zoom/crop */
+        .banner-inner-img {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Overlapping image style updated */
+        .banner-overlay-left {
+            position: absolute;
+            top: auto; 
+            bottom: -80px; /* Hangs off the bottom edge */
+            left: 50px; 
+            width: 350px;
+            height: auto;
+            z-index: 20;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
         /* --- CV LIST --- */
         .project-list-section { width: 100%; border-top: 2px solid #000; padding-top: 20px; margin-top: 100px; }
         .project-row { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #e0e0e0; font-size: 1rem; text-transform: uppercase; font-weight: 700; transition: background 0.3s, padding 0.3s; }
@@ -341,12 +365,8 @@
         .p-service { width: 40%; font-weight: 400; color: #555; }
         .p-year { width: 20%; text-align: right; }
 
-        /* --- BANNER --- */
-        .full-width-banner { width: 100%; height: 70vh; position: relative; }
-        /* Text removed */
-
         /* --- FOOTER --- */
-        footer { border-top: 10px solid #000; padding-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        footer { border-top: 10px solid #000; padding-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; z-index: 5; background: white; }
         .footer-cta h2 { font-size: clamp(3rem, 5vw, 5rem); line-height: 0.9; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; }
         .footer-cta a { font-size: 1.5rem; color: #000; text-decoration: underline; font-weight: 600; }
         .footer-links { display: flex; justify-content: space-between; align-items: flex-end; }
@@ -360,14 +380,12 @@
             body { 
                 padding: 0; 
                 cursor: auto; 
-                background-image: url('public/BE_MY_HEART_neck.jpg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
+                background-image: url('public/bg.jpeg'), url('https://images.unsplash.com/photo-1632515749667-080c98f98642?q=80&w=2670&auto=format&fit=crop'); 
                 background-attachment: scroll; 
                 background-position: top center;
                 background-size: 100% auto; 
                 background-repeat: no-repeat;
-                
-                /* UPDATED MOBILE PADDING TO 40PX */
-                padding-top: 40px;
+                padding-top: 80px; 
             }
 
             .cursor-dot, .cursor-outline { display: none; }
@@ -383,13 +401,16 @@
             .section-header-left, .section-header-right, .section-header-center { grid-column: 1 / span 1; text-align: left; margin-top: 40px; }
             
             .boobyful-overlay-img { left: 80%; width: 150px; top: -40px;}
+            
+            /* Mobile positioning for overlay: left aligned, hanging off bottom */
+            .banner-overlay-left { width: 150px; bottom: -40px; left: 20px; top: auto; }
 
             .img-block-1, .img-block-2, .text-block-right, .text-block-bottom-left, .img-block-3, .img-block-4, .img-block-5, .text-block-fashion, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { 
                 grid-column: 1 / span 1; margin-top: 20px;
             }
             .img-block-1, .img-block-2, .img-block-3, .img-block-4, .img-block-5, .img-block-6, .img-block-extra-1, .img-block-extra-2, .img-block-extra-3 { height: 300px; }
             .full-width-banner { height: 40vh; }
-            footer { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; padding-top: 80px; /* Extra padding for overlay clearance */ } 
             .marquee-content { font-size: 2rem; }
         }
     </style>
@@ -475,7 +496,7 @@
             </div>
 
             <div class="img-block-1 img-container hover-target reveal">
-                <img src="public/ILIKE.jpg" class="red-accent" alt="I Like">
+                <img src="public/ILIKE4.png" class="red-accent" alt="I Like">
             </div>
 
             <div class="img-block-2 img-container hover-target reveal">
@@ -484,11 +505,11 @@
             </div>
             
             <div class="img-block-extra-1 img-container hover-target reveal">
-                <img src="public/ILIKE_2.jpg" class="red-accent" alt="I Like 2">
+                <img src="public/ILIKE_3.png" alt="I Like 2">
             </div>
             
             <div class="img-block-extra-2 img-container hover-target reveal">
-                 <img src="public/ILIKE_3.jpg" class="red-accent" alt="I Like 3">
+                 <img src="public/ILIKE_4.png" class="red-accent" alt="I Like 3">
             </div>
 
             <div class="text-block-right reveal">
@@ -577,8 +598,11 @@
             </div>
         </div>
 
-        <div class="full-width-banner img-container reveal">
-            <img src="public/Rebecca_Schultze.jpg" alt="Rebecca Schultze">
+        <div class="full-width-banner reveal" style="position: relative;">
+            <div class="banner-inner-img img-container">
+                <img src="public/Rebecca_Schultze.jpg" alt="Rebecca Schultze">
+            </div>
+            <img src="public/Alter-Schlachthof13a.jpg" class="banner-overlay-left" alt="Studio Location">
         </div>
 
         <footer class="reveal">
